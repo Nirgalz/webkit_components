@@ -25,7 +25,9 @@ const createTopic = (form, apiKey, errorMessages) =>
     method: "post",
     headers: { "Api-Key": apiKey, "Content-Type": "application/json" },
     body: JSON.stringify({
-      title: `COVID-19 Resilient Livelihoods - Registration by ${formField(form, "name")}`,
+      title:
+        form.settings.topicTitle +
+        ` - Registration by ${formField(form, "name")}`,
       raw: generateResponse(form),
       category: process.env.VUE_APP_DISCOURSE_CATEGORY
     })
@@ -63,13 +65,20 @@ const generateUsername = form =>
 
 const generateResponse = form => `<pre>${JSON.stringify(form)}</pre>`;
 
-export default (form, errorMessages) =>
-  createUser(
-    form,
-    process.env.VUE_APP_DISCOURSE_AUTH_KEY,
-    errorMessages
-  ).then(json => (
+export default (form, errorMessages) => {
+  if (form.settings.createUser) {
+    createUser(
+      form,
+      process.env.VUE_APP_DISCOURSE_AUTH_KEY,
+      errorMessages
+    ).then(json =>
+      form.settings.createTopic
+        ? createTopic(form, json.api_keys[0].key, errorMessages)
+        : json
+    );
+  } else {
     form.settings.createTopic
-      ? createTopic(form, json.api_keys[0].key, errorMessages)
-      : json
-  ))
+      ? createTopic(form, form.settings.userAPIKey, errorMessages)
+      : null;
+  }
+};

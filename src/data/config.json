@@ -46,8 +46,8 @@
         "title": "Webkit Sandbox"
       },
       "views": [
-        { 
-          "menu": {  
+        {
+          "menu": {
             "config": {
               "links": "id"
             },
@@ -77,7 +77,7 @@
             "text": "This is the sandbox site for Webkit. Enter a topic_id with a valid configuration to preview your site.",
             "image": {
               "url": "https://erwebkit.netlify.app/edgeryders.svg",
-              "width": ["100px", "160px"] 
+              "width": ["100px", "160px"]
             },
             "buttons": [
               {
@@ -417,6 +417,9 @@
       },
       "settings": {
         "createTopic": true,
+        "topicTitle" : "this is a topic title",
+        "createUser" : true,
+        "userAPIKey" : null,
         "categoryId": 349,
         "airtable": {
           "base": "appVGanp2p2N4vuVP",
