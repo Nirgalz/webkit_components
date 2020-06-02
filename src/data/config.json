@@ -463,7 +463,7 @@
       }
     },
     {
-      "type": "custom_forms",
+      "type": "custom_form",
       "title": "Topic",
       "id": "topic",
       "style": {
@@ -498,7 +498,7 @@
       "fields": [
         {
           "title": "Answer to this topic",
-          "id": "topicz",
+          "id": "topic",
           "type": "textarea",
           "placeholder": "Write here your answer",
           "required": true
