@@ -36,6 +36,20 @@ const createTopic = (form, apiKey, errorMessages) =>
     response => handleNetworkError(response, errorMessages)
   );
 
+const createPost = (form, apiKey, errorMessages) =>
+  fetch(process.env.VUE_APP_DISCOURSE_TOPIC_URL, {
+    method: "post",
+    headers: { "Api-Key": apiKey, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      topic_id: form.settings.topic_id,
+      raw: generateResponse(form),
+      category: process.env.VUE_APP_DISCOURSE_CATEGORY
+    })
+  }).then(
+    response => handleResponse(response, errorMessages),
+    response => handleNetworkError(response, errorMessages)
+  );
+
 const handleResponse = (response, errorMessages) =>
   response.ok
     ? response.json()
@@ -71,14 +85,20 @@ export default (form, errorMessages) => {
       form,
       process.env.VUE_APP_DISCOURSE_AUTH_KEY,
       errorMessages
-    ).then(json =>
-      form.settings.createTopic
-        ? createTopic(form, json.api_keys[0].key, errorMessages)
-        : json
-    );
-  } else {
-    form.settings.createTopic
-      ? createTopic(form, form.settings.userAPIKey, errorMessages)
-      : null;
+    ).then(json => {
+      if (form.settings.createTopic) {
+        createTopic(form, json.api_keys[0].key, errorMessages);
+      } else if (form.settings.createPost) {
+        createPost(form, json.api_keys[0].key, errorMessages);
+      } else {
+        return json;
+      }
+    });
+  } else if (form.settings.userAPIKey) {
+    if (form.settings.createTopic) {
+      createTopic(form, form.settings.userAPIKey, errorMessages);
+    } else if (form.settings.createPost) {
+      createPost(form, form.settings.userAPIKey, errorMessages);
+    }
   }
 };

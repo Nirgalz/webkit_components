@@ -463,6 +463,53 @@
       }
     },
     {
+      "type": "custom_forms",
+      "title": "Topic",
+      "id": "topic",
+      "style": {
+        "title": {
+          "width": ["100%", "75%"],
+          "size": ["text-3xl", "text-3xl"]
+        },
+        "paragraph": {
+          "class": ["text-xl", "font-bold"]
+        },
+        "container": {
+          "padding": ["0px 20px"]
+        },
+        "wrapper": {
+          "padding": ["0"],
+          "width": ["75%"]
+        }
+      },
+      "settings": {
+        "createTopic": false,
+        "topicTitle" : null,
+        "createUser" : false,
+        "userAPIKey" : "YWRtaW49ZmFsc2UmbW9kZXJhdG9yPWZhbHNlJmF2YXRhcl91cmw9aHR0cHMlM0ElMkYlMkZjb21tdW5pdGllcy5lZGdlcnlkZXJzLmV1JTJGdXBsb2FkcyUyRmNvbW11bml0aWVzJTJGb3JpZ2luYWwlMkYyWCUyRjglMkY4YWZiODUwNWQ2MGFkYmFiMGYwMThkNzIwYTYyNjFhYWM0ODhjYjY5LnBuZyZlbWFpbD16bmlyZ2FsJTQwZ21haWwuY29tJmV4dGVybmFsX2lkPTEyNyZncm91cHM9dHJ1c3RfbGV2ZWxfMCUyQ3RydXN0X2xldmVsXzEmbm9uY2U9MTIzNCZyZXR1cm5fc3NvX3VybD1odHRwJTNBJTJGJTJGbG9jYWxob3N0JTNBODA4MCZ1c2VybmFtZT1uaXJnYWw%3D&sig=cdd1c827b48446449ae00c82beaa71e999777f9d55a8ce6cec373642a17ad68e",
+        "topic_id" : 13733,
+        "categoryId": null,
+        "airtable": {
+          "base": "appVGanp2p2N4vuVP",
+          "table": "Submissions"
+        }
+      },
+      "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>",
+      "fields": [
+        {
+          "title": "Answer to this topic",
+          "id": "topicz",
+          "type": "textarea",
+          "placeholder": "Write here your answer",
+          "required": true
+        }
+      ],
+      "success": {
+        "title": "Your form has been sent, thanks for registering!",
+        "text": "Check your inbox for a confirmation email with your account details."
+      }
+    },
+    {
       "type": "terms"
     }
   ]
